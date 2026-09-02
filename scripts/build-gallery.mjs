@@ -7,7 +7,7 @@
  *
  * 用法：node scripts/build-gallery.mjs
  */
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -34,9 +34,11 @@ for (const f of allShots) {
 }
 for (const k of Object.keys(bySlug)) bySlug[k].sort(numericSort);
 
+// 截图 URL 带 ?v=修改时间，重截同名图时浏览器缓存不会挡路
 const templates = index.templates.map(t => ({
   ...t,
-  shots: bySlug[t.slug] || []
+  shots: (bySlug[t.slug] || []).map(f =>
+    `${f}?v=${Math.floor(statSync(join(shotsDir, f)).mtimeMs / 1000)}`)
 }));
 
 const data = { repo: REPO_URL, templates };

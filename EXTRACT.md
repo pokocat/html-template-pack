@@ -70,20 +70,27 @@ node scripts/shot.mjs <slug>
 
 默认截三张：第 1 页、中间页、最后一页，输出 `screenshots/<slug>-<n>.png`（1920×1080）。
 
-### 8. 重建索引和页面
+### 8. 重建索引
 
 ```bash
-node scripts/build-index.mjs && node scripts/build-gallery.mjs
+node scripts/build-index.mjs
 ```
 
-### 9. 部署
+### 9. 一键发布
 
 ```bash
-scp -i ~/dev/aliyun/aiartist.pem gallery.html ecs-user@47.98.162.120:/opt/gallery/
-scp -i ~/dev/aliyun/aiartist.pem -r screenshots ecs-user@47.98.162.120:/opt/gallery/
+node scripts/deploy.mjs
 ```
 
-线上地址：https://gallery.aibuzz.cn（nginx 已配好，纯静态，不用 reload）。
+重建 gallery.html 并上传 gallery.html + screenshots/。纯静态站，传完即生效，不用 reload nginx。
+
+线上地址：https://gallery.aibuzz.cn
+
+实时生效的原理：
+
+- `gallery.html` 在 nginx 里是 `no-cache`，刷新即拿最新；
+- 截图 URL 带 `?v=修改时间`（build-gallery.mjs 注入），重截同名图也不会被浏览器 7 天缓存挡路；
+- 新模板的截图是新文件名，天然不受缓存影响。
 
 ### 10. 提交
 
@@ -100,3 +107,4 @@ git add -A && git commit -m "新增模板：<中文名>" && git push
 | 截指定页 | `node scripts/shot.mjs <slug> 2 5 8 --out /tmp/x` |
 | 重建索引 | `node scripts/build-index.mjs` |
 | 重建图库页 | `node scripts/build-gallery.mjs` |
+| 一键发布 | `node scripts/deploy.mjs` |
