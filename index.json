@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-02T16:23:15.766Z",
-  "template_count": 10,
+  "generated_at": "2026-09-02T19:33:22.609Z",
+  "template_count": 11,
   "templates": [
     {
       "slug": "neon-ai-proposal",
@@ -315,6 +315,37 @@
       "scheme": "light",
       "best_for": "适合一切该像设计师白板的内容：头脑风暴、工作坊、创意公司资质、设计思维工作坊、构思提案、美术指导评审。也适合任何想读起来像进行中的思考、而非打磨好结论的演示（含科技、调研、商业）。",
       "avoid_for": "要求精确和机构分量的场合不适合——便利贴美学刻意读起来温暖又未完成。",
+      "slide_count": 10
+    },
+    {
+      "slug": "silver-foil-pitch",
+      "name": "银箔蓝调提案",
+      "tagline": "银箔压纹纸面，配单一正蓝——一套安静、克制的商务 Pitch Deck。",
+      "mood": [
+        "商务",
+        "克制",
+        "质感",
+        "安静",
+        "可信"
+      ],
+      "occasion": [
+        "创业路演",
+        "融资 BP",
+        "商务提案",
+        "公司介绍",
+        "合作洽谈"
+      ],
+      "tone": [
+        "极简",
+        "纸感",
+        "编辑感",
+        "专业"
+      ],
+      "formality": "medium-high",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "适合需要显得稳重、可信、有纸面质感的商务场合——路演、BP、提案、公司介绍。银箔底让它在一片白底模板里一眼可认，又不喧闹。",
+      "avoid_for": "需要活泼、年轻或暗色科技感的场合不适合——它的气质是安静、克制、纸感。",
       "slide_count": 10
     }
   ]

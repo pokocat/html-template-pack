@@ -1,0 +1,46 @@
+{
+  "slug": "silver-foil-pitch",
+  "name": "银箔蓝调提案",
+  "tagline": "银箔压纹纸面，配单一正蓝——一套安静、克制的商务 Pitch Deck。",
+  "mood": [
+    "商务",
+    "克制",
+    "质感",
+    "安静",
+    "可信"
+  ],
+  "occasion": [
+    "创业路演",
+    "融资 BP",
+    "商务提案",
+    "公司介绍",
+    "合作洽谈"
+  ],
+  "tone": [
+    "极简",
+    "纸感",
+    "编辑感",
+    "专业"
+  ],
+  "formality": "medium-high",
+  "density": "medium",
+  "palette": {
+    "foil": "#cfcfcf",
+    "blue": "#2254c4",
+    "blue-body": "#3062ca",
+    "pale": "#d9e6f4",
+    "pie-grey": "#a9aeb6",
+    "pie-pale": "#dfe3e8",
+    "description": "整版银箔压纹纸做底，只有一种正蓝承担全部文字、色块与线条；浅蓝只出现在图表次级柱形。没有第二个强调色，靠纸面反光和蓝色粗细对比撑层次。"
+  },
+  "typography": {
+    "display": "Montserrat",
+    "body": "Montserrat",
+    "style": "Montserrat 一字体到底：700 粗体做大标题与色块标签，400/500 做正文与边角信息。标题字号极大、行距极紧，正文小而疏，靠尺度差做层级。"
+  },
+  "scheme": "light",
+  "best_for": "适合需要显得稳重、可信、有纸面质感的商务场合——路演、BP、提案、公司介绍。银箔底让它在一片白底模板里一眼可认，又不喧闹。",
+  "avoid_for": "需要活泼、年轻或暗色科技感的场合不适合——它的气质是安静、克制、纸感。",
+  "slide_count": 10,
+  "navigation": "deck-stage.js (方向键 / 空格 / 触摸滑动)"
+}

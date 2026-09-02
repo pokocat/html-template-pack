@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>银箔蓝调 · 商务 Pitch Deck</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue:      #2254c4;  /* 主蓝：标题 / 色块 / 线条 */
+    --blue-body: #3062ca;  /* 正文蓝 */
+    --pale:      #d9e6f4;  /* 浅蓝：次级柱形 */
+    --pie-grey:  #a9aeb6;
+    --pie-pale:  #dfe3e8;
+    --font: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { background: #cfcfcf; }
+  deck-stage { background: #cfcfcf; }
+
+  section.slide {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    background: url('assets/foil.png') center / cover;
+    font-family: var(--font); color: var(--blue-body);
+  }
+
+  /* ── 公共页眉 / 线条 ── */
+  .brand { position: absolute; top: 72px; left: 156px; font-size: 20px; font-weight: 600; color: var(--blue); letter-spacing: .01em; }
+  .date  { position: absolute; top: 72px; left: 545px; font-size: 20px; font-weight: 500; color: var(--blue); }
+  .topline { position: absolute; top: 81px; right: 14px; width: 663px; height: 2px; background: var(--blue); }
+  .botline { position: absolute; bottom: 10px; left: 0; width: 100%; height: 2px; background: var(--blue); }
+
+  h1, h2 { color: var(--blue); font-weight: 700; }
+  p { font-weight: 400; }
+
+  .ico { width: 19px; height: 19px; color: var(--blue); flex: 0 0 auto; }
+
+  /* ── 01 封面 ── */
+  .s-cover h1 { position: absolute; top: 374px; left: 133px; font-size: 227px; line-height: 1; letter-spacing: -0.005em; }
+  .s-cover .rule { position: absolute; top: 686px; left: 148px; width: 1272px; height: 4px; background: var(--blue); }
+  .s-cover .contact { position: absolute; top: 914px; left: 148px; display: flex; align-items: center; gap: 46px; }
+  .s-cover .contact .item { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 500; }
+
+  /* ── 02 About ── */
+  .s-about .photo { position: absolute; top: 244px; left: 142px; width: 653px; height: 836px; object-fit: cover; }
+  .s-about h2 { position: absolute; top: 236px; left: 923px; width: 780px; font-size: 130px; line-height: 1.16; }
+  .s-about p { position: absolute; top: 668px; left: 923px; width: 780px; font-size: 24px; line-height: 1.48; }
+
+  /* ── 03 Problem ── */
+  .s-problem h2 { position: absolute; top: 205px; left: 144px; font-size: 167px; line-height: 1; }
+  .s-problem .lead { position: absolute; top: 438px; left: 148px; width: 800px; font-size: 26px; line-height: 1.5; }
+  .s-problem .cols { position: absolute; top: 712px; left: 150px; display: flex; gap: 48px; }
+  .s-problem .cols .col { width: 252px; }
+  .s-problem .cols h4 { font-size: 26px; font-weight: 700; color: var(--blue); margin-bottom: 16px; }
+  .s-problem .cols p { font-size: 19px; line-height: 1.5; }
+  .s-problem .photo { position: absolute; top: 200px; left: 1240px; width: 560px; height: 690px; object-fit: cover; }
+
+  /* ── 04 Solution ── */
+  .s-solution h2 { position: absolute; top: 202px; left: 157px; font-size: 134px; line-height: 1; }
+  .s-solution .photo { position: absolute; top: 396px; left: 153px; width: 656px; height: 196px; object-fit: cover; }
+  .s-solution .lead { position: absolute; top: 718px; left: 158px; width: 620px; font-size: 24px; line-height: 1.5; }
+  .s-solution .grid { position: absolute; top: 242px; left: 964px; width: 800px; display: grid; grid-template-columns: 340px 320px; column-gap: 125px; row-gap: 104px; }
+  .s-solution .grid h3 { font-size: 40px; line-height: 1; font-weight: 700; color: var(--blue); margin-bottom: 27px; }
+  .s-solution .grid p { font-size: 25px; line-height: 1.44; }
+  .s-solution .grid .u { display: block; width: 96px; height: 3px; background: var(--blue); margin-top: 28px; }
+
+  /* ── 05 Product Overview ── */
+  .s-product h2 { position: absolute; top: 201px; left: 152px; font-size: 126px; line-height: 0.88; letter-spacing: -0.025em; }
+  .s-product .lead { position: absolute; top: 638px; left: 152px; width: 634px; font-size: 30px; line-height: 1.52; }
+  .s-product .board { position: absolute; top: 182px; left: 1048px; display: flex; gap: 50px; }
+  .s-product .bcol { display: flex; flex-direction: column; gap: 7px; }
+  .s-product .box { width: 362px; height: 378px; background: var(--blue); color: #fff; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 58px 42px; }
+  .s-product .box h4 { font-size: 22px; font-weight: 700; margin-bottom: 42px; }
+  .s-product .box p { font-size: 17px; line-height: 1.55; color: #fff; }
+  .s-product .board img { width: 362px; height: 378px; object-fit: cover; }
+
+  /* ── 06 Market Size ── */
+  .s-market h2 { position: absolute; top: 157px; left: 146px; font-size: 129px; line-height: 1; }
+  .s-market .map { position: absolute; top: 318px; left: 148px; width: 790px; height: 445px; object-fit: contain; }
+  .s-market .lead { position: absolute; top: 806px; left: 148px; width: 812px; font-size: 18px; line-height: 1.6; }
+  .s-market .stats { position: absolute; top: 159px; left: 1237px; width: 360px; }
+  .s-market .stat { margin-bottom: 52px; }
+  .s-market .stat .tag { display: block; background: var(--blue); color: #fff; font-size: 15px; font-weight: 700; padding: 13px 12px; }
+  .s-market .stat .num { font-size: 44px; font-weight: 700; color: var(--blue); margin: 15px 0 35px; }
+  .s-market .stat p { font-size: 15px; line-height: 1.5; }
+
+  /* ── 07 Market Affirmation ── */
+  .s-affirm h2 { position: absolute; top: 215px; left: 142px; font-size: 95px; line-height: 1; }
+  .s-affirm .lead { position: absolute; top: 387px; left: 142px; width: 820px; font-size: 29px; line-height: 1.62; }
+  .s-affirm .nums { position: absolute; top: 687px; left: 142px; display: flex; gap: 118px; }
+  .s-affirm .nums .n .lb { font-size: 19px; font-weight: 500; margin-bottom: 26px; }
+  .s-affirm .nums .n .v { font-size: 62px; font-weight: 700; color: var(--blue); margin-bottom: 24px; }
+  .s-affirm .nums .n .t { font-size: 28px; font-weight: 700; color: var(--blue); }
+  .s-affirm .photo { position: absolute; top: 209px; left: 1245px; width: 617px; height: 673px; object-fit: cover; }
+
+  /* ── 08 Business Model ── */
+  .s-biz h2 { position: absolute; top: 164px; left: 142px; font-size: 105px; line-height: 1; }
+  .s-biz .photo { position: absolute; top: 371px; left: 145px; width: 814px; height: 275px; object-fit: cover; }
+  .s-biz .lead { position: absolute; top: 722px; left: 142px; width: 740px; font-size: 22px; line-height: 1.5; }
+  .s-biz .side { position: absolute; top: 172px; left: 1245px; width: 590px; }
+  .s-biz .bar-label { background: var(--blue); color: #fff; font-size: 30px; font-weight: 700; padding: 28px 24px; }
+  .s-biz .ratio-row { display: flex; align-items: center; gap: 60px; margin: 65px 0 104px; padding-left: 4px; }
+  .s-biz .ratio-row .r { font-size: 40px; font-weight: 700; color: var(--blue); line-height: 1.25; }
+  .s-biz .pies { display: flex; gap: 70px; margin-left: auto; margin-right: 10px; }
+  .s-biz .chart { position: relative; height: 280px; margin-top: 49px; }
+  .s-biz .chart .axis { position: absolute; left: 0; top: 0; height: 223px; display: flex; flex-direction: column; justify-content: space-between; font-size: 12px; font-weight: 600; }
+  .s-biz .chart .bars { position: absolute; left: 121px; top: 0; display: flex; align-items: flex-end; height: 223px; }
+  .s-biz .chart .grp { display: flex; align-items: flex-end; }
+  .s-biz .chart .grp + .grp { margin-left: 119px; }
+  .s-biz .chart .b { width: 88px; }
+  .s-biz .chart .b.light { background: var(--pale); }
+  .s-biz .chart .b.solid { background: var(--blue); }
+  .s-biz .chart .xl { position: absolute; top: 232px; transform: translateX(-50%); font-size: 13px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+
+  /* ── 09 Our Team ── */
+  .s-team h2 { position: absolute; top: 187px; left: 142px; font-size: 94px; line-height: 1; }
+  .s-team .lead { position: absolute; top: 350px; left: 142px; width: 790px; font-size: 30px; line-height: 1.7; }
+  .s-team .row { position: absolute; top: 602px; left: 142px; display: flex; gap: 137px; }
+  .s-team .member { position: relative; width: 282px; }
+  .s-team .member img { width: 282px; height: 282px; object-fit: cover; object-position: top; }
+  .s-team .member .tag { position: absolute; top: 3px; right: 0; background: var(--blue); color: #fff; font-size: 16px; font-weight: 700; padding: 11px 20px; }
+  .s-team .member .nm { margin-top: 16px; font-size: 32px; font-weight: 700; color: var(--blue); }
+
+  /* ── 10 Thank You ── */
+  .s-thanks h2 { position: absolute; top: 249px; left: 142px; font-size: 196px; line-height: 1; }
+  .s-thanks .lead { position: absolute; top: 596px; left: 142px; width: 705px; font-size: 29px; line-height: 1.62; }
+  .s-thanks .ready { position: absolute; top: 870px; left: 142px; font-size: 44px; font-weight: 700; color: var(--blue); }
+  .s-thanks .contact { position: absolute; top: 806px; left: 1020px; }
+  .s-thanks .contact .item { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 500; }
+  .s-thanks .contact .item + .item { margin-top: 0; }
+  .s-thanks .contact .r1 { margin-bottom: 46px; }
+  .s-thanks .contact .r2 { display: flex; gap: 116px; }
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-phone" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="10" fill="currentColor"/>
+    <path d="M6.9 5.1l1.5 1.5c.3.3.3.8 0 1.1l-.7.7c.5 1.1 1.4 2 2.5 2.5l.7-.7c.3-.3.8-.3 1.1 0l1.5 1.5c.3.3.3.8 0 1.1l-.9.9c-.4.4-1 .5-1.5.3-2.6-1.1-4.6-3.1-5.7-5.7-.2-.5-.1-1.1.3-1.5l.9-.9c.3-.3.8-.3 1.1 0z" fill="#fff"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="10" fill="currentColor"/>
+    <path d="M10 4.4c-2.1 0-3.7 1.6-3.7 3.7 0 2.8 3.7 7.4 3.7 7.4s3.7-4.6 3.7-7.4c0-2.1-1.6-3.7-3.7-3.7zm0 5.1a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="#fff"/>
+  </symbol>
+  <symbol id="i-globe" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="10" fill="currentColor"/>
+    <circle cx="10" cy="10" r="5.4" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <path d="M4.6 10h10.8M10 4.6c-3.6 3.5-3.6 7.3 0 10.8M10 4.6c3.6 3.5 3.6 7.3 0 10.8" fill="none" stroke="#fff" stroke-width="1"/>
+  </symbol>
+</svg>
+
+<deck-stage>
+
+  <!-- ============ 01 COVER ============ -->
+  <section class="slide s-cover">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <h1>Pitch Deck</h1>
+    <div class="rule"></div>
+    <div class="contact">
+      <span class="item"><svg class="ico"><use href="#i-phone"/></svg>+123-456-7890</span>
+      <span class="item"><svg class="ico"><use href="#i-pin"/></svg>123 Anywhere St., Any City, ST 12345</span>
+      <span class="item"><svg class="ico"><use href="#i-globe"/></svg>www.yourwebsite.com</span>
+    </div>
+  </section>
+
+  <!-- ============ 02 ABOUT ============ -->
+  <section class="slide s-about">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <img class="photo" src="assets/a_building.png" alt="" />
+    <h2>About Our<br/>Company</h2>
+    <p>In the presentation session, the background/introduction can be filled with information that is arranged systematically and effectively with respect to an interesting topic to be used as material for discussion at the opening of the presentation session. The introduction can provide a general overview for those who are listening to your presentation so that the key words on the topic of discussion are emphasized during this background/introductory presentation session.</p>
+  </section>
+
+  <!-- ============ 03 PROBLEM ============ -->
+  <section class="slide s-problem">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Problem</h2>
+    <p class="lead">A problem needs to be discussed further and in detail because this problem is the main foundation in the initial development of a product, service, and decision making. Without a well-defined problem, it will have an impact on a job that is unfocused, unmanaged, and less relevant.</p>
+    <div class="cols">
+      <div class="col">
+        <h4>Society</h4>
+        <p>Identify large problem areas with the eagle view approach so that this macro stage is useful for knowing the outcome of our work.</p>
+      </div>
+      <div class="col">
+        <h4>Environment</h4>
+        <p>Don't forget to highlight how we see a problem, because our personal method will be a plus point.</p>
+      </div>
+      <div class="col">
+        <h4>Climate</h4>
+        <p>Identify as many of these problems as possible but still have a relationship to each of these problems so that the work will be more focused on one topic.</p>
+      </div>
+    </div>
+    <img class="photo" src="assets/a_glacier.png" alt="" />
+  </section>
+
+  <!-- ============ 04 SOLUTION ============ -->
+  <section class="slide s-solution">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Solution</h2>
+    <img class="photo" src="assets/a_wind.png" alt="" />
+    <p class="lead">Show that we offer a solution that solves the problems previously described and identified. Make sure that the solutions we offer uphold the values of effectiveness, efficiency, and are highly relevant to the market situation and society,</p>
+    <div class="grid">
+      <div>
+        <h3>Market</h3>
+        <p>Uphold the spirit of innovation and creativity in shaping a solution that can be accepted by the wider community.</p>
+        <span class="u"></span>
+      </div>
+      <div>
+        <h3>Industry</h3>
+        <p>The solutions offered need to be based on sound market decisions so that they can have an impact.</p>
+        <span class="u"></span>
+      </div>
+      <div>
+        <h3>SEM</h3>
+        <p>Give an explanation that the solutions offered are based on data and analysis that are very precise and focus on the problem.</p>
+        <span class="u"></span>
+      </div>
+      <div>
+        <h3>End User</h3>
+        <p>The solutions offered need to be based on sound market decisions so that they can have impact.</p>
+        <span class="u"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 PRODUCT OVERVIEW ============ -->
+  <section class="slide s-product">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Product<br/>Overview</h2>
+    <p class="lead">Provide an explanation of the general profile of the services we have. Arrange information about our products services in a systematic and fact-based manner. Also express our pride in the service that we have done well.</p>
+    <div class="board">
+      <div class="bcol">
+        <div class="box">
+          <h4>Internet of Things</h4>
+          <p>Detail and explain each product. Our examination of community and market issues increases with additional products/services.</p>
+        </div>
+        <img src="assets/p_woman.png" alt="" />
+      </div>
+      <div class="bcol">
+        <img src="assets/p_man.png" alt="" />
+        <div class="box">
+          <h4>Smart Home Platform</h4>
+          <p>Our alternate product category is available. Our products must work together to solve social and economic issues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 MARKET SIZE ============ -->
+  <section class="slide s-market">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Market Size</h2>
+    <img class="map" src="assets/a_map.png" alt="" />
+    <p class="lead">Market size is the total amount of all sales and customers that can be seen directly by stakeholders. This technique is usually calculated at the end of the year, the market size can be used by companies to determine the potential of their market and business in the future. This is very useful, especially for new companies that will offer services to those who are interested in our services.</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="tag">Total Available Market (TAM)</span>
+        <div class="num">1.4 Billion</div>
+        <p>In the TAM Section, we can fill in the potential of any person who can buy an offer or the maximum amount of revenue a business can earn by selling their offer.</p>
+      </div>
+      <div class="stat">
+        <span class="tag">Serviceable Available Market (SAM)</span>
+        <div class="num">194 Million</div>
+        <p>It is a part of TAM that has the potential to become a target market for the company by considering the type of product, technology available and geographical conditions.</p>
+      </div>
+      <div class="stat">
+        <span class="tag">Serviceable Obtainable Market (SOM)</span>
+        <div class="num">167 Million</div>
+        <p>The SOM is a smaller fraction of the SAM that is the target of a serviceable and realistically achievable market in the short to medium term.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 MARKET AFFIRMATION ============ -->
+  <section class="slide s-affirm">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Market Affirmation</h2>
+    <p class="lead">It's a market testing stage to ensure that the products produced by the company can be accepted and effectively used by the broad market. For start-up companies, we can use data already achieved by similar products from other companies.</p>
+    <div class="nums">
+      <div class="n">
+        <div class="lb">Thymic Unlimited</div>
+        <div class="v">2.650</div>
+        <div class="t">Total Users</div>
+      </div>
+      <div class="n">
+        <div class="lb">Safford S-Co.</div>
+        <div class="v">1.850</div>
+        <div class="t">Total Users</div>
+      </div>
+      <div class="n">
+        <div class="lb">Liceria &amp; Co.</div>
+        <div class="v">1.010</div>
+        <div class="t">Total Users</div>
+      </div>
+    </div>
+    <img class="photo" src="assets/wire.png" alt="" />
+  </section>
+
+  <!-- ============ 08 BUSINESS MODEL ============ -->
+  <section class="slide s-biz">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Business Model</h2>
+    <img class="photo" src="assets/corridor.png" alt="" />
+    <p class="lead">Describe how to monetize, who your customers are, distribution channels or fee structure. The goal is to get an idea of how this business will survive your product or service and tell how your company will make money and achieve its goals. This can be indicated by graphs, statistics or charts. Use the Life Time Value (LTV) and Customer Acquisition Cost (CAC) metrics to provide a clearer picture.</p>
+    <div class="side">
+      <div class="bar-label">The Brief Percentage of LTV</div>
+      <div class="ratio-row">
+        <div class="r">Ratio:<br/>60:40</div>
+        <div class="pies">
+          <svg width="100" height="100" viewBox="0 0 72 72">
+            <circle cx="36" cy="36" r="30" fill="var(--pie-pale)"/>
+            <path d="M36 6 A30 30 0 0 1 63.1 47.6 L36 36 Z" fill="var(--pie-grey)"/>
+          </svg>
+          <svg width="100" height="100" viewBox="0 0 72 72">
+            <circle cx="36" cy="36" r="25" fill="none" stroke="var(--pie-pale)" stroke-width="14"/>
+            <path d="M36 11 A25 25 0 0 1 60.4 30.5" fill="none" stroke="var(--pie-grey)" stroke-width="14"/>
+          </svg>
+        </div>
+      </div>
+      <div class="bar-label">The Brief Percentage of CAC</div>
+      <div class="chart">
+        <div class="axis"><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div>
+        <div class="bars">
+          <div class="grp">
+            <div class="b solid" style="height:207px"></div>
+            <div class="b light" style="height:207px"></div>
+          </div>
+          <div class="grp">
+            <div class="b solid" style="height:56px"></div>
+            <div class="b light" style="height:179px"></div>
+          </div>
+        </div>
+        <span class="xl" style="left:209px">Internet of Things</span>
+        <span class="xl" style="left:504px">Artificial Intelligence</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 OUR TEAM ============ -->
+  <section class="slide s-team">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Our Team</h2>
+    <p class="lead">Fill in the experience, assignments, and how good your company team are. Include the hobbies of the personnel to break the ice.</p>
+    <div class="row">
+      <div class="member">
+        <img src="assets/team1.png" alt="" />
+        <span class="tag">CEO</span>
+        <div class="nm">Sacha Dubois</div>
+      </div>
+      <div class="member">
+        <img src="assets/team2.png" alt="" />
+        <span class="tag">CFO</span>
+        <div class="nm">Olivia Wilson</div>
+      </div>
+      <div class="member">
+        <img src="assets/team3.png" alt="" />
+        <span class="tag">COO</span>
+        <div class="nm">Lars Peeters</div>
+      </div>
+      <div class="member">
+        <img src="assets/team4.png" alt="" />
+        <span class="tag">CTO</span>
+        <div class="nm">Alfredo Torres</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 THANK YOU ============ -->
+  <section class="slide s-thanks">
+    <span class="brand">Rimberio</span>
+    <span class="date">June 13, 2038</span>
+    <div class="topline"></div>
+    <div class="botline"></div>
+    <h2>Thank You</h2>
+    <p class="lead">Write down your hopes for the future of your company. Don't forget to thank the company for the opportunity and convince related parties to support your company.</p>
+    <div class="ready">We are ready to assist you</div>
+    <div class="contact">
+      <div class="item r1"><svg class="ico"><use href="#i-pin"/></svg>123 Anywhere St., Any City, ST 12345</div>
+      <div class="r2">
+        <span class="item"><svg class="ico"><use href="#i-phone"/></svg>+123-456-7890</span>
+        <span class="item"><svg class="ico"><use href="#i-globe"/></svg>www.yourwebsite.com</span>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

@@ -78,7 +78,7 @@ function wrapperFor(n) {
   f.addEventListener('load', () => {
     const w = f.contentWindow;
     for (let k = 1; k < N; k++) {
-      w.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
+      w.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
     }
   });
 </script>
@@ -93,6 +93,7 @@ for (const n of slides) {
   const r = spawnSync(CHROME, [
     "--headless=new",
     "--disable-gpu",
+    "--allow-file-access-from-files",
     "--hide-scrollbars",
     "--force-device-scale-factor=1",
     "--window-size=1920,1080",
