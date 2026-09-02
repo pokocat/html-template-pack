@@ -1,0 +1,45 @@
+{
+  "slug": "raw-grid",
+  "name": "生猛网格",
+  "tagline": "新粗野主义演示：粗描边、偏移阴影、粉／鼠尾草绿／墨色配。",
+  "mood": [
+    "生猛",
+    "有力",
+    "有活力",
+    "自信"
+  ],
+  "occasion": [
+    "创业路演",
+    "加速器演示日",
+    "创始人路演",
+    "独立产品发布",
+    "品牌演示",
+    "创作者作品集"
+  ],
+  "tone": [
+    "直接",
+    "现代",
+    "干脆",
+    "图形化"
+  ],
+  "formality": "medium-low",
+  "density": "high",
+  "palette": {
+    "primary": "#FFFFFF",
+    "ink": "#0A0A0A",
+    "pink": "#F2D4CF",
+    "green": "#E5EDD6",
+    "gray": "#F5F5F5",
+    "description": "白底加墨黑结构，柔粉和鼠尾草绿做扁平色块，硬 3px 描边配 6px 偏移阴影"
+  },
+  "typography": {
+    "display": "Segoe UI / system-ui",
+    "body": "Segoe UI / system-ui",
+    "style": "系统无衬线重字重、强大写字距；好用而非花哨"
+  },
+  "scheme": "light",
+  "best_for": "适合一切直接、图形化自信的内容：创始人路演、加速器演示、品牌演示、独立发布、创作者作品集。数据页、对比表、流程图的强项。想让演示显得生猛自信而非一本正经时，科技、调研、金融也都合适。",
+  "avoid_for": "需要柔软、温暖或刻意安静的场合不适合——粗野描边和偏移阴影锚定图形化腔调。",
+  "slide_count": 10,
+  "navigation": "inline keyboard handler"
+}

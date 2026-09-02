@@ -1,0 +1,46 @@
+{
+  "slug": "retro-windows",
+  "name": "复古视窗",
+  "tagline": "Windows 95 边角：灰标题栏、MS Sans Serif、像素排版，满屏怀旧。",
+  "mood": [
+    "怀旧",
+    "复古",
+    "极客",
+    "俏皮"
+  ],
+  "occasion": [
+    "复古游戏提案",
+    "Y2K 品牌",
+    "创作者作品集（90 年代风）",
+    "技术史分享",
+    "整活但做得很讲究的演示"
+  ],
+  "tone": [
+    "会心一笑",
+    "怀旧",
+    "极客",
+    "有趣"
+  ],
+  "formality": "low",
+  "density": "medium",
+  "palette": {
+    "bg_gray": "#C0C0C0",
+    "bg_light": "#D4D0C8",
+    "blue_navy": "#000080",
+    "blue_light": "#1084D0",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "description": "Windows 95 系统配色：3D 按钮灰、海军蓝标题栏、像素完美的内／外凸描边，勿抗锯齿美学"
+  },
+  "typography": {
+    "display": "Press Start 2P",
+    "body": "MS Sans Serif",
+    "mono": "VT323",
+    "style": "8 位像素展示加 Microsoft 系统无衬线加 DOS 终端等宽"
+  },
+  "scheme": "light",
+  "best_for": "适合一切明知故犯的怀旧内容：复古游戏、Y2K 风品牌、90 年代味的创作者作品集、技术史分享、刻意玩梗的演示。只要好玩的复古梗就是全部重点的场合，它都是好选择。",
+  "avoid_for": "需要现代、优雅或机构可信的演示不适合——Win95 边角永远读起来像一套戏服。",
+  "slide_count": 10,
+  "navigation": "inline keyboard handler with on-page nav dots and slide counter"
+}

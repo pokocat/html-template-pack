@@ -1,0 +1,53 @@
+{
+  "slug": "sakura-chroma",
+  "name": "樱花色谱",
+  "tagline": "复古日式卡带包装美学：米纸、斜向彩虹带、窄粗标题字、JIS 规格复选框。",
+  "mood": [
+    "复古",
+    "俏皮",
+    "卡哇伊科技",
+    "温暖",
+    "有触感",
+    "产品目录"
+  ],
+  "occasion": [
+    "产品发布 / 目录",
+    "独立硬件 / 模拟工作室品牌",
+    "音乐厂牌 / 发片排期",
+    "创意工作室年报",
+    "杂志 / 杂志提案",
+    "复古风品牌活动"
+  ],
+  "tone": [
+    "俏皮",
+    "自信",
+    "温暖",
+    "有触感",
+    "80 年代日式科技"
+  ],
+  "formality": "low",
+  "density": "medium",
+  "palette": {
+    "paper": "#F1E6CB",
+    "ink": "#3A2516",
+    "red": "#E5392A",
+    "pink": "#E54489",
+    "orange": "#F09131",
+    "yellow": "#F0BC2A",
+    "green": "#3D9F47",
+    "blue": "#3F8BC4",
+    "description": "暖米纸底加深暖棕墨水，六原色（红、粉、橙、黄、绿、蓝）做大块、彩带和产品条点缀"
+  },
+  "typography": {
+    "display": "Big Shoulders Display",
+    "body": "Albert Sans",
+    "mono": "JetBrains Mono",
+    "jp": "Noto Sans JP",
+    "style": "红色和棕色的窄黑无衬线展示字做头图，干净现代无衬线做正文，等宽字做规格表；日文汉字做装饰微排版"
+  },
+  "scheme": "light",
+  "best_for": "适合一切该像复古日式卡带包装或 TDK／Sony／樱花牌产品目录的内容：独立硬件品牌演示、音乐厂牌发片排期、模拟工作室回顾、杂志提案、卡哇伊科技产品发布、创意工作室年报。也适合任何想要大胆配色、窄展示字和有触感印刷产品感的设计。",
+  "avoid_for": "需要克制、企业或安静排版的演示不适合——粗窄标题组合、彩带条纹和原色配色刻意做得响亮、产品页。",
+  "slide_count": 8,
+  "navigation": "vanilla JS (arrow keys, space, Home/End, touch swipe)"
+}

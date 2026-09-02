@@ -1,0 +1,42 @@
+{
+  "slug": "playful",
+  "name": "俏皮",
+  "tagline": "阳光暖桃底色配 Syne 展示字：一份友善的独立发布演示。",
+  "mood": [
+    "温暖",
+    "亲和",
+    "独立",
+    "友善"
+  ],
+  "occasion": [
+    "创作者作品集",
+    "独立产品发布",
+    "生活方式品牌",
+    "小生意提案",
+    "通讯 / 社群"
+  ],
+  "tone": [
+    "明快",
+    "随性",
+    "热情"
+  ],
+  "formality": "low",
+  "density": "medium",
+  "palette": {
+    "bg": "#F0C8A0",
+    "bg_alt": "#E8B88E",
+    "text": "#1A1A1A",
+    "light": "#F7DEC6",
+    "description": "暖桃／沙底加墨黑结构加更浅的米色卡片；整体同一个暖色温"
+  },
+  "typography": {
+    "display": "Syne",
+    "body": "Space Grotesk",
+    "style": "有个性的几何变量展示加干净无衬线正文"
+  },
+  "scheme": "light",
+  "best_for": "适合一切温暖、独立、亲和的内容：创作者作品集、独立产品发布、生活方式品牌、小生意提案、通讯／社群演示。也欢迎任何想要友善人味而非企业感的演示（含科技、调研）。",
+  "avoid_for": "机构可信度比温暖更重要的场合不适合——桃色配色刻意做得随性。",
+  "slide_count": 10,
+  "navigation": "inline keyboard handler with on-page slide counter"
+}

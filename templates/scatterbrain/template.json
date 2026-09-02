@@ -1,0 +1,50 @@
+{
+  "slug": "scatterbrain",
+  "name": "便签墙",
+  "tagline": "便利贴灵感：粉彩便签、Caveat 手写、Shrikhand 和 Zilla Slab 字形栈。",
+  "mood": [
+    "俏皮",
+    "创意",
+    "温暖",
+    "故意凌乱",
+    "工作坊"
+  ],
+  "occasion": [
+    "头脑风暴",
+    "工作坊",
+    "创意公司资质",
+    "设计思维工作坊",
+    "构思提案",
+    "美术指导评审"
+  ],
+  "tone": [
+    "随性",
+    "温暖",
+    "有表现力",
+    "有人味"
+  ],
+  "formality": "low",
+  "density": "high",
+  "palette": {
+    "yellow": "#FFE066",
+    "blue": "#A5D8FF",
+    "pink": "#FFC9C9",
+    "green": "#B2F2BB",
+    "orange": "#FFCC80",
+    "purple": "#D0BFFF",
+    "paper": "#F7F5F0",
+    "ink": "#2D2A26",
+    "description": "米白纸加一整套粉彩便利贴色（黄、蓝、粉、绿、橙、紫）配墨棕文字；到处是柔和投影"
+  },
+  "typography": {
+    "display": "Shrikhand",
+    "script": "Caveat",
+    "body": "Zilla Slab",
+    "style": "复古展示加手写体加温暖 slab 正文；读起来像设计师白板"
+  },
+  "scheme": "light",
+  "best_for": "适合一切该像设计师白板的内容：头脑风暴、工作坊、创意公司资质、设计思维工作坊、构思提案、美术指导评审。也适合任何想读起来像进行中的思考、而非打磨好结论的演示（含科技、调研、商业）。",
+  "avoid_for": "要求精确和机构分量的场合不适合——便利贴美学刻意读起来温暖又未完成。",
+  "slide_count": 10,
+  "navigation": "inline keyboard handler (arrows, space, PgUp/PgDn, Home/End) plus touch swipe and mouse-wheel"
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "neon-ai-proposal",
+  "name": "霓虹 AI 提案",
+  "tagline": "纯黑 HUD 底，配电光霓虹黄大字——一套 AI 数字营销商务提案系统。",
+  "mood": [
+    "科技",
+    "赛博朋克",
+    "带电",
+    "自信",
+    "高对比",
+    "未来感"
+  ],
+  "occasion": [
+    "AI 数字营销提案",
+    "代理方客户提案",
+    "竞标",
+    "营销服务提案",
+    "业务能力手册",
+    "SaaS / martech 提案",
+    "创业 / 创始人路演"
+  ],
+  "tone": [
+    "霓虹",
+    "图形化",
+    "现代",
+    "数据驱动",
+    "自信"
+  ],
+  "formality": "medium",
+  "density": "medium-high",
+  "palette": {
+    "bg": "#000000",
+    "panel": "#141414",
+    "panel-2": "#1b1b1b",
+    "neon": "#D4FF00",
+    "neon-2": "#C8FF00",
+    "cyan": "#30E3C0",
+    "green": "#1FC25E",
+    "paper": "#f4f4f1",
+    "ink": "#0a0a0a",
+    "muted": "#a2a2a2",
+    "description": "酸性纯黑底，配单一电光霓虹黄强调色。深色页是纯黑底霓虹字；少数「纸」页反白成米白底黑字做对比。一条黄→青→绿的光谱条是唯一的多彩元素，只在数据页少量出现。"
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Archivo",
+    "style": "Archivo Black 用于粗壮的全大写展示标题；Archivo（400–900）用于正文、标签和微型大写边角。紧凑行距、全大写标题、酸性黄强调。"
+  },
+  "scheme": "dark",
+  "best_for": "适合 AI 或 martech 代理方向客户提案、营销服务方案、竞标，以及一切该像数据驱动、高电压、一眼就是「科技」的能力手册。",
+  "avoid_for": "需要安静、温暖或机构感的场合不适合——纯黑配霓虹，天然喧闹、未来感十足。",
+  "slide_count": 12,
+  "navigation": "vanilla JS (arrow keys, space, Home/End, touch swipe)"
+}

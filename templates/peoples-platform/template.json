@@ -1,0 +1,47 @@
+{
+  "slug": "peoples-platform",
+  "name": "人民讲台",
+  "tagline": "活动海报能量：米底上的蓝、橙、红，Alfa Slab + Caveat Brush。",
+  "mood": [
+    "激进",
+    "响亮",
+    "图形化",
+    "诚实"
+  ],
+  "occasion": [
+    "文化评论",
+    "宣言",
+    "社群 / 市政演示",
+    "设计分享",
+    "活动提案",
+    "创始人愿景"
+  ],
+  "tone": [
+    "有力",
+    "直接",
+    "有表现力",
+    "温暖大胆"
+  ],
+  "formality": "medium-low",
+  "density": "medium-high",
+  "palette": {
+    "blue": "#2C2CDC",
+    "orange": "#F2A03A",
+    "red": "#E83A2A",
+    "cream": "#F4E9D6",
+    "ink": "#0E0E14",
+    "description": "高饱和政治海报色：钴蓝、信号橙、警示红，暖米底配深墨"
+  },
+  "typography": {
+    "display": "Alfa Slab One",
+    "secondary": "Archivo Narrow",
+    "script": "Caveat Brush",
+    "mono": "DM Mono",
+    "style": "粗 slab 展示加窄无衬线加手写笔刷加等宽字；抗议海报字形栈"
+  },
+  "scheme": "light",
+  "best_for": "适合一切诚实、响亮、图形化的内容：文化评论、宣言、市政与社群演示、设计分享、活动提案。创始人愿景、使命陈述，以及一切想要抗议海报能量而非企业精致感的演示（跨行业）都很合适。",
+  "avoid_for": "真正需要机构克制的场合不适合——高饱和政治海报配色牢牢锚定表现力能量。",
+  "slide_count": 10,
+  "navigation": "deck-stage runtime (arrow keys, space, PgUp/PgDn, Home/End)"
+}

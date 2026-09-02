@@ -1,0 +1,46 @@
+{
+  "slug": "pink-script",
+  "name": "粉红手记",
+  "tagline": "黑底、热粉点缀、珍珠米纸、DM Serif Display 标题：深夜编辑奢华。",
+  "mood": [
+    "夜行",
+    "情绪化",
+    "有意图",
+    "奢华",
+    "有表现力"
+  ],
+  "occasion": [
+    "时尚品牌演示",
+    "创作者个人品牌",
+    "夜间产品（夜生活 / 交友 / 烈酒）",
+    "奢华发布",
+    "编辑特稿"
+  ],
+  "tone": [
+    "文学",
+    "暧昧",
+    "考究",
+    "杂志感"
+  ],
+  "formality": "medium-high",
+  "density": "low",
+  "palette": {
+    "ink": "#060507",
+    "paper": "#F5EDF1",
+    "pink": "#ED3D8C",
+    "pink_2": "#FF66A8",
+    "pink_deep": "#B81D67",
+    "description": "近黑底加一抹饱和热粉点缀加珍珠米纸承载内容；整套系统靠单一强调色加克制撑起来"
+  },
+  "typography": {
+    "display": "DM Serif Display",
+    "body": "Inter",
+    "mono": "JetBrains Mono",
+    "style": "锋利过渡衬线标题加干净无衬线正文加技术等宽标签"
+  },
+  "scheme": "dark",
+  "best_for": "适合一切夜行、有意图、略带奢华的内容：时尚品牌演示、创作者个人品牌、夜生活／烈酒发布、奢华产品揭幕、编辑特稿。也是想以磁场般自信落地的科技主题演讲、研究综述、商业提案的吸睛之选。",
+  "avoid_for": "白天的企业专业与传统 B2B 场合不适合——暗底配热粉显得太有造型感、太有表现力。",
+  "slide_count": 9,
+  "navigation": "deck-stage runtime (arrow keys, space, PgUp/PgDn, Home/End)"
+}

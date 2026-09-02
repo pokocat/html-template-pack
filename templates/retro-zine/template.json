@@ -1,0 +1,46 @@
+{
+  "slug": "retro-zine",
+  "name": "复古小志",
+  "tagline": "米纸配绿色点缀，Bebas Neue + Caveat：一份孔版印刷杂志的 HTML 版。",
+  "mood": [
+    "手工",
+    "低保真",
+    "地下",
+    "温暖复古"
+  ],
+  "occasion": [
+    "独立杂志 / 出版物",
+    "音乐 / 艺术品牌",
+    "创作者作品集",
+    "小批量 / 手工发布",
+    "文化 / 社群演示"
+  ],
+  "tone": [
+    "糙",
+    "温暖",
+    "有意图",
+    "DIY"
+  ],
+  "formality": "medium-low",
+  "density": "medium",
+  "palette": {
+    "bg": "#C8B99A",
+    "bg_dark": "#B8A98A",
+    "green": "#008F4D",
+    "green_light": "#00A85D",
+    "black": "#1A1A1A",
+    "white": "#F4EFE6",
+    "description": "暖米／卡其纸加一抹饱和森林绿；深墨和米白；读起来像双色孔版印刷"
+  },
+  "typography": {
+    "display": "Bebas Neue",
+    "script": "Caveat",
+    "body": "Space Grotesk",
+    "style": "高窄展示加手写体加干净无衬线正文；像印刷杂志页一样层叠"
+  },
+  "scheme": "light",
+  "best_for": "适合一切印刷感、低保真、手工感的内容：独立杂志出版物、音乐／艺术品牌、创作者作品集、小批量手工发布、社群演示。也是想要孔版印刷温暖而非数码精致感的科技、调研、商业演示的黑马之选。",
+  "avoid_for": "要求数码原生精致或科技快手节奏的场合不适合——层叠杂志美学刻意做得手作。",
+  "slide_count": 10,
+  "navigation": "inline keyboard handler with on-page slide counter"
+}

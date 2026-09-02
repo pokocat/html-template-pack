@@ -1,0 +1,45 @@
+{
+  "slug": "pin-and-paper",
+  "name": "别针便签",
+  "tagline": "黄纸配别针插画、墨蓝手写 Caveat 和纸张纹理质感。",
+  "mood": [
+    "手工",
+    "手作",
+    "温暖",
+    "深思",
+    "文学"
+  ],
+  "occasion": [
+    "有个性的研究结论",
+    "定性报告",
+    "创始人反思",
+    "创作者随笔",
+    "工作坊复盘"
+  ],
+  "tone": [
+    "文学",
+    "亲密",
+    "温暖",
+    "接地气"
+  ],
+  "formality": "medium",
+  "density": "medium",
+  "palette": {
+    "paper": "#EFE56A",
+    "cream": "#F8F1D6",
+    "ink": "#1F3A8A",
+    "red": "#C2342B",
+    "description": "饱和黄纸、柔米替代底、深墨蓝文字，配铁锈红、牛皮纸和橄榄点缀；纸张纹理可见"
+  },
+  "typography": {
+    "display": "Caveat",
+    "body": "Space Grotesk",
+    "mono": "DM Mono",
+    "style": "手写体做温度加无衬线做可读性加等宽字做标注；课本批注质感"
+  },
+  "scheme": "light",
+  "best_for": "适合一切手作、温暖、文学感的内容：定性研究结论、创始人反思、长文品牌故事、工作坊复盘。招牌别针插画和纸张纹理让它特别适合任何想要个性温暖而非精致感的演示（含科技、商业）。",
+  "avoid_for": "需要数码原生精致或严格数据驱动的演示不适合——手写 Caveat 刻意做得随性。",
+  "slide_count": 11,
+  "navigation": "deck-stage runtime (arrow keys, space, PgUp/PgDn, Home/End)"
+}
