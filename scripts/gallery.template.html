@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>HTML 幻灯片模板库 · 采集 · 蒸馏 · 复用</title>
+<title>PPT蒸馏器 · 蒸出你的下一场演示</title>
 <style>
   :root {
     --bg: #F4F1EA;
@@ -411,6 +411,15 @@
   }
   .prompt-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
   .btn.small { flex: 0 0 auto; padding: 9px 18px; font-size: 13px; }
+  .prompt-box .btn.ghost {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.22);
+    color: #EFEAE0;
+  }
+  .prompt-box .btn.ghost:hover {
+    background: rgba(255,255,255,.16);
+    border-color: rgba(255,255,255,.34);
+  }
 
   /* ---------- toast ---------- */
   .toast {
@@ -445,7 +454,7 @@
 
 <header class="topbar">
   <div class="brand">
-    <span class="mark">HTML<em>·</em>幻灯片模板库</span>
+    <span class="mark">PPT<em>蒸馏器</em></span>
     <span class="count" id="headCount"></span>
   </div>
   <div class="spacer"></div>
@@ -456,36 +465,36 @@
 </header>
 
 <section class="hero">
-  <p class="kicker">采集 · 蒸馏 · 复用</p>
-  <h1>10 套可直接复用的 <span class="accent">HTML 幻灯片模板</span></h1>
-  <p class="sub">每一套都是独立、自包含的视觉系统。挑一套看中的，填一句主题，复制生成的提示词，丢给 Codex 或 Claude —— 它读仓库里的 AGENTS.md，替你拼出整份演示。</p>
+  <p class="kicker">现蒸 · 现用</p>
+  <h1>挑一套模板，<span class="accent">蒸出</span>你的下一场演示</h1>
+  <p class="sub">看中哪套就点进去，复制提示词丢给 Codex 或 Claude，坐等成品出锅。</p>
 
   <div class="steps">
     <div class="step">
       <div class="n">1</div>
-      <div class="t">逛图库，选模板</div>
-      <div class="d">按配色、气质、正式度筛，点进卡片看全套版式。</div>
+      <div class="t">挑一锅原料</div>
+      <div class="d">按配色、气质、正式度逛，点进卡片看全套版式。</div>
     </div>
     <div class="step">
       <div class="n">2</div>
-      <div class="t">填一句主题</div>
-      <div class="d">在顶部输入框写下你的演示主题，越具体越好。</div>
+      <div class="t">写下你的主题</div>
+      <div class="d">在顶部填一句，越具体，蒸出来越对味。</div>
     </div>
     <div class="step">
       <div class="n">3</div>
-      <div class="t">复制提示词</div>
-      <div class="d">一键复制，粘贴给 Codex / Claude，坐等成品。</div>
+      <div class="t">开蒸，丢给 AI</div>
+      <div class="d">一键复制提示词，粘给 Codex 或 Claude。</div>
     </div>
   </div>
 
   <div class="quickbar">
-    <span class="lbl">没有灵感？先用通用版：</span>
-    <input id="quick" readonly value="克隆 https://github.com/pokocat/html-template-pack，按 AGENTS.md 帮我做一份漂亮的 HTML 幻灯片演示。" />
+    <span class="lbl">懒得想主题？先用这锅：</span>
+    <input id="quick" readonly value="克隆 https://github.com/pokocat/html-template-pack，按 AGENTS.md 帮我做一份拿得出手的 HTML 幻灯片演示。" />
   </div>
 </section>
 
 <div class="toolbar">
-  <input class="search" id="search" placeholder="搜索模板名、气质、场景…" />
+  <input class="search" id="search" placeholder="想蒸什么味儿？搜模板名、气质、场景…" />
   <div class="chips" id="schemeChips">
     <button class="chip active" data-scheme="all">全部</button>
     <button class="chip" data-scheme="light">浅色</button>
@@ -497,7 +506,7 @@
 
 <main class="wrap">
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none">没有匹配的模板，换个关键词试试。</div>
+  <div class="empty" id="empty" style="display:none">锅都空了，换个词再蒸试试？</div>
 </main>
 
 <div class="overlay" id="overlay">
@@ -513,11 +522,11 @@
     <div class="modal-body">
       <div class="modal-shots" id="mShots"></div>
       <div class="modal-block">
-        <h4>适合什么</h4>
+        <h4>什么场面最对味</h4>
         <p id="mBest"></p>
       </div>
       <div class="modal-block">
-        <h4>不适合什么</h4>
+        <h4>什么时候别用它</h4>
         <p id="mAvoid"></p>
       </div>
       <div class="modal-meta" id="mMeta"></div>
@@ -532,7 +541,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast">已复制到剪贴板</div>
+<div class="toast" id="toast">提示词出锅啦</div>
 
 <script>
 const DATA = /*__TEMPLATE_DATA__*/;
@@ -551,7 +560,7 @@ function buildPrompt(t, topic) {
   const tlen = topic.trim();
   const subject = tlen ? tlen : "（在这里写你的主题）";
   return [
-    `用 html-template-pack 里的「${t.name}」模板，帮我做一份 HTML 幻灯片演示。`,
+    `用 PPT蒸馏器里的「${t.name}」模板，帮我蒸一份 HTML 幻灯片演示。`,
     ``,
     `主题：${subject}`,
     ``,
@@ -600,7 +609,7 @@ function cardHtml(t) {
         <div class="tags">${mood}${tone}</div>
         <div class="meta">${meta}</div>
         <div class="card-actions">
-          <button class="btn copy" data-copy="${esc(t.slug)}">复制 Prompt</button>
+          <button class="btn copy" data-copy="${esc(t.slug)}">复制提示词</button>
           <button class="btn ghost" data-view="${esc(t.slug)}">详情</button>
         </div>
       </div>
@@ -620,12 +629,12 @@ function render() {
   grid.innerHTML = list.map(cardHtml).join("");
   $("#empty").style.display = list.length ? "none" : "block";
   $("#hint").textContent = `共 ${list.length} 套`;
-  $("#headCount").textContent = `· ${DATA.templates.length} 套模板`;
+  $("#headCount").textContent = `· 炉上 ${DATA.templates.length} 锅`;
 }
 
 /* --- copy helpers --- */
 function copyText(text, cb) {
-  const done = ok => { toast(ok ? "已复制到剪贴板" : "复制失败，请手动选择"); cb && cb(); };
+  const done = ok => { toast(ok ? "提示词出锅啦，去 AI 里开蒸" : "复制失败，请手动选择"); cb && cb(); };
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => done(true), () => fallbackCopy(text, done));
   } else {
