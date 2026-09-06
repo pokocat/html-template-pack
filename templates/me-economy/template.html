@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>我经济 · 个人商业觉醒</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:     #0c0c0e;   /* 近黑背景 */
+    --panel:  #151517;   /* 深灰面板 */
+    --chip:   #222226;   /* 标签底 */
+    --pink:   #ff3fa4;   /* 主强调：霓虹粉 */
+    --pink2:  #ff7ad9;   /* 粉渐变中间色 */
+    --violet: #c069ff;   /* 粉渐变收尾 */
+    --teal:   #00e5a8;   /* 辅助：青绿 */
+    --white:  #ffffff;
+    --muted:  #a6a6ae;   /* 次要文字 */
+    --dim:    #64646c;   /* 弱化文字 */
+    --line:   rgba(255,255,255,.13);
+    --fc: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --fe: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body, deck-stage { background: var(--bg); }
+
+  section.slide {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    background: radial-gradient(120% 90% at 50% -10%, #1a1a20 0%, var(--bg) 55%);
+    font-family: var(--fc); color: var(--white);
+  }
+
+  /* ── 渐变粉字 ── */
+  .grad {
+    background: linear-gradient(100deg, var(--pink) 0%, var(--pink2) 52%, var(--violet) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .en { font-family: var(--fe); }
+
+  /* ── 背景大水印 ── */
+  .wm {
+    position: absolute; z-index: 0; font-family: var(--fe); font-weight: 900;
+    color: rgba(255,255,255,.032); letter-spacing: -.02em; white-space: nowrap;
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+
+  /* ── 公共页眉 ── */
+  .g-head { position: absolute; top: 42px; left: 64px; right: 64px; display: flex; align-items: flex-start; justify-content: space-between; z-index: 5; }
+  .g-logo { display: flex; flex-direction: column; gap: 5px; }
+  .g-logo b { font-family: var(--fe); font-size: 22px; font-weight: 800; letter-spacing: .26em; color: var(--white); }
+  .g-logo small { font-family: var(--fe); font-size: 8px; letter-spacing: .30em; color: var(--dim); text-transform: uppercase; }
+  .g-nav { display: flex; gap: 44px; margin-top: 7px; }
+  .g-nav span { font-size: 15px; color: var(--dim); white-space: nowrap; letter-spacing: .01em; }
+  .g-badge { font-family: var(--fe); font-size: 12px; letter-spacing: .12em; color: var(--pink); border: 1px solid rgba(255,63,164,.55); padding: 6px 16px; border-radius: 999px; white-space: nowrap; }
+
+  /* ── 通用组件 ── */
+  .chip { display: inline-flex; align-items: center; padding: 13px 22px; background: var(--chip); border-radius: 10px; font-size: 19px; color: var(--muted); letter-spacing: .01em; }
+  .chip.hot { color: #fff; background: rgba(255,63,164,.16); border: 1px solid rgba(255,63,164,.45); }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); margin-right: 12px; }
+
+  /* ════ 01 封面 Contents ════ */
+  .s-cover .photo { position: absolute; top: 0; right: 0; height: 1080px; width: 790px; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .s-cover .photo::after { content: ""; position: absolute; inset: 0; }
+  .s-cover .photo-mask { position: absolute; top: 0; right: 0; height: 1080px; width: 790px; background: linear-gradient(90deg, var(--bg) 0%, rgba(12,12,14,0) 46%); z-index: 2; }
+  .s-cover h1 { position: absolute; top: 178px; left: 76px; font-family: var(--fe); font-size: 208px; font-weight: 900; line-height: .92; letter-spacing: -.03em; }
+  .s-cover .sub { position: absolute; top: 424px; left: 82px; font-size: 38px; font-weight: 700; letter-spacing: .01em; }
+  .s-cover .chapters { position: absolute; top: 520px; left: 82px; display: flex; flex-direction: column; gap: 22px; z-index: 3; }
+  .s-cover .ch { display: flex; align-items: center; gap: 26px; }
+  .s-cover .ch .no { width: 62px; height: 62px; flex: 0 0 auto; border: 2px solid rgba(255,63,164,.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--fe); font-weight: 800; font-size: 22px; color: var(--pink); }
+  .s-cover .ch .t { display: flex; flex-direction: column; gap: 5px; }
+  .s-cover .ch .t b { font-size: 29px; font-weight: 700; color: #fff; letter-spacing: .01em; }
+  .s-cover .ch .t span { font-size: 19px; color: var(--muted); }
+  .s-cover .note { position: absolute; left: 82px; bottom: 74px; font-size: 21px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 22px; width: 720px; z-index: 3; }
+
+  /* ════ 02 章节过渡 我经济 ════ */
+  .s-divider .wm1 { top: 120px; left: 90px; font-size: 330px; }
+  .s-divider .block { position: absolute; top: 342px; left: 150px; z-index: 2; }
+  .s-divider .kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .s-divider .kicker .bar { width: 54px; height: 3px; background: var(--teal); }
+  .s-divider .kicker span { font-family: var(--fe); font-size: 16px; letter-spacing: .3em; color: var(--teal); }
+  .s-divider h1 { font-size: 210px; font-weight: 900; line-height: 1; letter-spacing: .02em; }
+  .s-divider .sub { margin-top: 34px; font-size: 36px; color: var(--muted); letter-spacing: .06em; }
+
+  /* ════ 03 公司越来越小 ════ */
+  .s-smaller h1 { position: absolute; top: 172px; left: 76px; font-size: 104px; font-weight: 900; line-height: 1.12; z-index: 2; }
+  .s-smaller .quote { position: absolute; top: 232px; right: 120px; text-align: right; z-index: 2; }
+  .s-smaller .quote svg { width: 88px; height: 88px; color: var(--pink); margin-bottom: 18px; }
+  .s-smaller .quote p { font-family: var(--fe); font-size: 21px; letter-spacing: .10em; color: #dcdce4; line-height: 1.5; }
+  .s-smaller .comps { position: absolute; top: 620px; left: 76px; width: 1230px; display: flex; gap: 120px; z-index: 2; }
+  .s-smaller .comp .lbl { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+  .s-smaller .comp .lbl b { font-size: 34px; font-weight: 900; }
+  .s-smaller .comp .lbl small { font-family: var(--fe); font-size: 13px; letter-spacing: .18em; color: var(--dim); }
+  .s-smaller .comp.past .lbl b { color: var(--muted); }
+  .s-smaller .comp.now .lbl b { color: var(--pink); }
+  .s-smaller .chips { display: flex; flex-wrap: wrap; gap: 14px; max-width: 560px; }
+  .s-smaller .photo { position: absolute; top: 560px; right: 0; width: 460px; height: 380px; object-fit: cover; filter: grayscale(1) contrast(1.05); border-radius: 14px; z-index: 2; opacity: .92; }
+
+  /* ════ 04 不是没有公司 ════ */
+  .s-structure .photo { position: absolute; top: 0; left: 0; width: 800px; height: 1080px; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .s-structure .ph-cap { position: absolute; left: 60px; bottom: 66px; font-family: var(--fe); font-size: 24px; font-weight: 700; letter-spacing: .12em; color: #fff; line-height: 1.5; z-index: 2; }
+  .s-structure .side { position: absolute; top: 0; right: 0; width: 1120px; height: 1080px; padding: 0 120px 0 80px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 60px; z-index: 3; }
+  .s-structure h1 { font-size: 96px; font-weight: 900; line-height: 1.18; text-align: right; }
+  .s-structure .bar { width: 640px; background: var(--panel); border-left: 4px solid var(--pink); padding: 30px 40px; font-size: 34px; font-weight: 700; color: #fff; letter-spacing: .04em; }
+
+  /* ════ 05 过去开店 vs 现在建系统 ════ */
+  .s-store .wm1 { top: 40px; left: 50%; transform: translateX(-50%); font-size: 430px; }
+  .s-store .col { position: absolute; top: 300px; width: 560px; text-align: center; z-index: 2; }
+  .s-store .col.l { left: 170px; }
+  .s-store .col.r { right: 170px; }
+  .s-store .col .tag { font-family: var(--fe); font-size: 15px; letter-spacing: .34em; margin-bottom: 26px; }
+  .s-store .col.l .tag { color: var(--dim); }
+  .s-store .col.r .tag { color: var(--teal); }
+  .s-store .col h2 { font-size: 112px; font-weight: 900; line-height: 1.05; }
+  .s-store .col.l h2 { color: #fff; }
+  .s-store .col.r h2 { color: var(--pink); }
+  .s-store .col .en { display: block; margin-top: 30px; font-family: var(--fe); font-size: 19px; letter-spacing: .2em; color: var(--muted); }
+  .s-store .vs { position: absolute; top: 500px; left: 50%; transform: translateX(-50%); width: 96px; height: 96px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--fe); font-weight: 800; font-size: 26px; color: var(--muted); z-index: 3; }
+
+  /* ════ 06 数据 13000万 / 30000万 ════ */
+  .s-data .wm1 { bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 400px; }
+  .s-data .nums { position: absolute; top: 300px; left: 0; width: 100%; display: flex; justify-content: center; gap: 320px; z-index: 2; }
+  .s-data .metric { display: flex; align-items: flex-start; gap: 26px; }
+  .s-data .num { font-family: var(--fe); font-size: 176px; font-weight: 900; line-height: .9; letter-spacing: -.02em; }
+  .s-data .unit { width: 56px; height: 56px; background: #fff; color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; margin-top: 8px; }
+  .s-data .label { margin-top: 26px; font-size: 26px; color: var(--muted); letter-spacing: .14em; }
+  .s-data .tail { position: absolute; bottom: 132px; left: 0; width: 100%; text-align: center; font-size: 30px; color: #fff; letter-spacing: .05em; z-index: 2; }
+
+  /* ════ 07 成为自己的品牌 ════ */
+  .s-brand .wm1 { top: 120px; right: 60px; font-size: 440px; }
+  .s-brand .block { position: absolute; top: 330px; left: 0; width: 100%; text-align: center; z-index: 2; }
+  .s-brand h1 { font-size: 170px; font-weight: 900; line-height: 1; letter-spacing: .02em; }
+  .s-brand .en { display: block; margin: 40px 0 0; font-family: var(--fe); font-size: 26px; font-weight: 700; letter-spacing: .34em; color: var(--teal); }
+  .s-brand .crowd { margin-top: 52px; font-size: 24px; color: var(--muted); letter-spacing: .12em; }
+
+  /* ════ 08 超级个体 ════ */
+  .s-super .wm1 { top: 60px; left: 70px; font-size: 460px; }
+  .s-super h1 { position: absolute; top: 250px; left: 120px; font-size: 160px; font-weight: 900; line-height: 1; z-index: 2; }
+  .s-super .en { position: absolute; top: 462px; left: 128px; font-family: var(--fe); font-size: 30px; font-weight: 700; letter-spacing: .22em; color: var(--teal); z-index: 2; }
+  .s-super .en small { color: var(--muted); letter-spacing: .2em; margin-left: 18px; }
+  .s-super .sub { position: absolute; top: 532px; left: 128px; font-size: 24px; color: var(--muted); z-index: 2; }
+  .s-super .struct { position: absolute; bottom: 130px; left: 0; width: 100%; display: flex; justify-content: center; gap: 220px; z-index: 2; }
+  .s-super .s-box { text-align: center; }
+  .s-super .s-box .cap { font-family: var(--fe); font-size: 14px; letter-spacing: .28em; color: var(--dim); margin-bottom: 22px; }
+  .s-super .s-box .chain { display: flex; align-items: center; gap: 34px; }
+  .s-super .s-box .node { padding: 20px 30px; border-radius: 12px; font-size: 23px; font-weight: 700; }
+  .s-super .s-box.past .node { background: var(--chip); color: var(--muted); }
+  .s-super .s-box.past .arr { color: var(--dim); font-size: 26px; }
+  .s-super .s-box.now .node { background: rgba(255,63,164,.16); border: 1px solid rgba(255,63,164,.5); color: #fff; }
+  .s-super .s-box.now .arr { color: var(--teal); font-size: 26px; }
+
+  /* ════ 09 能力 Able ════ */
+  .s-ability h1 { position: absolute; top: 210px; left: 110px; font-size: 230px; font-weight: 900; line-height: 1; z-index: 2; }
+  .s-ability .script { position: absolute; top: 250px; left: 220px; font-family: var(--fe); font-style: italic; font-size: 64px; color: rgba(255,255,255,.14); z-index: 2; letter-spacing: -.01em; }
+  .s-ability .curve { position: absolute; top: 130px; left: 0; z-index: 1; }
+  .s-ability .side { position: absolute; top: 300px; right: 120px; width: 560px; text-align: right; z-index: 2; }
+  .s-ability .side h2 { font-family: var(--fe); font-size: 120px; font-weight: 900; letter-spacing: -.02em; color: #fff; line-height: 1; }
+  .s-ability .side .en { margin-top: 22px; font-family: var(--fe); font-size: 20px; letter-spacing: .18em; color: var(--muted); line-height: 1.7; }
+
+  /* ════ 10 六大能力模型 ════ */
+  .s-wheel .wm1 { bottom: -40px; right: 40px; font-size: 360px; }
+  .s-wheel h2 { position: absolute; top: 150px; left: 76px; font-size: 64px; font-weight: 900; letter-spacing: .02em; z-index: 2; }
+  .s-wheel .sub { position: absolute; top: 256px; left: 78px; font-size: 22px; color: var(--muted); letter-spacing: .04em; z-index: 2; }
+  .s-wheel .wheel { position: absolute; top: 200px; left: 50%; transform: translateX(-50%); width: 1500px; height: 800px; z-index: 2; }
+  .s-wheel svg.arc { position: absolute; top: 0; left: 0; }
+  .s-wheel .hub { position: absolute; left: 50%; top: 640px; transform: translate(-50%,-50%); width: 150px; height: 150px; border-radius: 50%; background: rgba(255,63,164,.12); border: 2px solid rgba(255,63,164,.6); display: flex; align-items: center; justify-content: center; color: var(--pink); z-index: 3; }
+  .s-wheel .n { position: absolute; width: 250px; text-align: center; z-index: 2; }
+  .s-wheel .n .cap { padding: 20px 0 10px; font-size: 26px; font-weight: 900; color: #fff; }
+  .s-wheel .n p { font-size: 19px; color: var(--muted); line-height: 1.5; }
+  .s-wheel .n .p { width: 12px; height: 12px; margin: 0 auto 14px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 5px rgba(255,63,164,.16); }
+
+  /* ════ 11 越专业越不被替代 ════ */
+  .s-prof .wm1 { top: 40px; left: 50%; transform: translateX(-50%); font-size: 350px; }
+  .s-prof .top { position: absolute; top: 220px; left: 0; width: 100%; text-align: center; z-index: 2; }
+  .s-prof .top .ico { color: var(--teal); margin-bottom: 18px; }
+  .s-prof h1 { font-size: 100px; font-weight: 900; line-height: 1.14; }
+  .s-prof .lead { margin-top: 26px; font-size: 30px; color: var(--muted); }
+  .s-prof .services { position: absolute; top: 620px; left: 0; width: 100%; display: flex; justify-content: center; gap: 22px; z-index: 2; }
+  .s-prof .services .chip { font-size: 24px; padding: 20px 38px; }
+  .s-prof .band { position: absolute; left: 0; bottom: 0; width: 100%; height: 200px; background: #f4f4f6; color: #111; display: flex; align-items: center; z-index: 3; }
+  .s-prof .band .l { margin-left: 80px; font-family: var(--fe); font-weight: 900; font-size: 30px; letter-spacing: .06em; color: #111; width: 380px; line-height: 1.25; }
+  .s-prof .band .cols { flex: 1; display: flex; justify-content: center; gap: 70px; }
+  .s-prof .band .c b { display: block; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .s-prof .band .c span { font-size: 16px; color: #555; }
+  .s-prof .band .r { margin-right: 80px; width: 420px; text-align: right; font-size: 24px; font-weight: 700; color: #111; }
+
+  /* ════ 12 越靠近生活 ════ */
+  .s-life .wm1 { bottom: 60px; left: 40px; font-size: 360px; }
+  .s-life .top { position: absolute; top: 190px; left: 100px; z-index: 2; }
+  .s-life .top .ico { color: var(--teal); margin-bottom: 14px; }
+  .s-life h1 { font-size: 96px; font-weight: 900; line-height: 1.12; }
+  .s-life .flow { position: absolute; top: 470px; left: 100px; display: flex; align-items: center; z-index: 2; }
+  .s-life .flow .chip { font-size: 20px; }
+  .s-life .flow .arr { color: var(--teal); font-size: 22px; margin: 0 14px; }
+  .s-life .note { position: absolute; top: 600px; left: 100px; width: 820px; font-size: 23px; color: var(--muted); line-height: 1.7; z-index: 2; }
+  .s-life .pics { position: absolute; right: 90px; bottom: 120px; display: grid; grid-template-columns: repeat(2, 300px); gap: 24px; z-index: 2; }
+  .s-life .pics img { width: 300px; height: 300px; object-fit: cover; filter: grayscale(1) contrast(1.05); border-radius: 12px; }
+
+  /* ════ 13 小步验证持续迭代 ════ */
+  .s-iterate .wm1 { top: 60px; left: 50%; transform: translateX(-50%); font-size: 340px; }
+  .s-iterate h1 { position: absolute; top: 210px; left: 0; width: 100%; text-align: center; font-size: 96px; font-weight: 900; z-index: 2; }
+  .s-iterate .lead { position: absolute; top: 368px; left: 0; width: 100%; text-align: center; font-size: 28px; color: var(--muted); z-index: 2; }
+  .s-iterate .flow { position: absolute; top: 560px; left: 0; width: 100%; display: flex; justify-content: center; align-items: center; z-index: 2; }
+  .s-iterate .step { padding: 16px 22px; background: var(--chip); border-radius: 10px; font-size: 19px; color: #eee; white-space: nowrap; }
+  .s-iterate .arr { color: var(--pink); font-size: 20px; margin: 0 12px; }
+  .s-iterate .pics { position: absolute; bottom: 110px; left: 0; width: 100%; display: flex; justify-content: center; gap: 30px; z-index: 2; }
+  .s-iterate .pics img { width: 360px; height: 200px; object-fit: cover; filter: grayscale(1) contrast(1.05); border-radius: 12px; }
+
+  /* ════ 14 五步进阶法 ════ */
+  .s-five .wm1 { bottom: 0; left: 60px; font-size: 360px; }
+  .s-five h1 { position: absolute; top: 150px; left: 76px; font-size: 90px; font-weight: 900; z-index: 2; }
+  .s-five .en { position: absolute; top: 172px; right: 76px; font-family: var(--fe); font-size: 16px; letter-spacing: .3em; color: var(--dim); z-index: 2; }
+  .s-five .steps { position: absolute; top: 340px; left: 76px; right: 76px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; z-index: 2; }
+  .s-five .card { background: var(--panel); border-radius: 16px; border: 1px solid var(--line); padding: 26px 24px 30px; }
+  .s-five .card .n { font-family: var(--fe); font-size: 52px; font-weight: 900; color: var(--pink); line-height: 1; margin-bottom: 18px; }
+  .s-five .card h3 { font-size: 28px; font-weight: 900; margin-bottom: 14px; color: #fff; }
+  .s-five .card p { font-size: 18px; line-height: 1.6; color: var(--muted); }
+  .s-five .formula { position: absolute; bottom: 90px; left: 76px; right: 76px; height: 90px; background: #f4f4f6; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 2; }
+  .s-five .formula span { font-size: 28px; font-weight: 900; color: #111; }
+  .s-five .formula i { font-style: normal; color: var(--pink); font-size: 30px; font-weight: 900; }
+
+  /* ════ 15 新时代个人价值 ════ */
+  .s-final .wm1 { top: 80px; left: 50%; transform: translateX(-50%); font-size: 340px; }
+  .s-final .block { position: absolute; top: 330px; left: 0; width: 100%; text-align: center; z-index: 2; }
+  .s-final h1 { font-size: 120px; font-weight: 900; line-height: 1.16; }
+  .s-final .en { display: block; margin-top: 42px; font-family: var(--fe); font-size: 24px; letter-spacing: .34em; color: var(--teal); }
+  .s-final .tags { margin-top: 56px; display: flex; justify-content: center; gap: 18px; }
+  .s-final .tags .chip { font-size: 22px; padding: 16px 30px; }
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M9.6 5C6.1 6.9 4 9.8 4 13.4c0 3 1.9 5.1 4.4 5.1 2.2 0 3.8-1.6 3.8-3.7 0-2-1.4-3.5-3.3-3.5-.4 0-.9.1-1 .1.3-2 1.8-3.9 3.9-4.9L9.6 5zm9 0c-3.5 1.9-5.6 4.8-5.6 8.4 0 3 1.9 5.1 4.4 5.1 2.2 0 3.8-1.6 3.8-3.7 0-2-1.4-3.5-3.3-3.5-.4 0-.9.1-1 .1.3-2 1.8-3.9 3.9-4.9L18.6 5z" fill="currentColor"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.8 2 11.4c0 2.5 1.3 4.8 3.5 6.3V21l3.2-1.9c1 .3 2.1.4 3.3.4 5.5 0 10-3.8 10-8.4S17.5 3 12 3zm-3.5 9a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm3.5 0a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zm3.5 0a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6z" fill="currentColor"/></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3.4"/><circle cx="18" cy="17" r="3.4"/><path d="M6 17l4-6 2.5 4"/><path d="M12.5 15L15 11l3-1"/><path d="M6 17l3-2"/></g></symbol>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ════ 01 封面 Contents ════ -->
+  <section class="slide s-cover">
+    <span class="wm" style="bottom:20px; right:20px; font-size:280px;">ME<br/>ECONOMY</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <img class="photo" src="assets/eye.jpg" alt="" />
+    <div class="photo-mask"></div>
+    <h1 class="grad">Contents</h1>
+    <p class="sub grad">从"生存型经营"走向"效率型增长"</p>
+    <div class="chapters">
+      <div class="ch"><span class="no">01</span><span class="t"><b>我经济</b><span>正在成为新的经济形态</span></span></div>
+      <div class="ch"><span class="no">02</span><span class="t"><b>为什么传统就业模式</b><span>正在发生变化</span></span></div>
+      <div class="ch"><span class="no">03</span><span class="t"><b>我经济市场现状</b><span>与商业模式</span></span></div>
+      <div class="ch"><span class="no">04</span><span class="t"><b>个人经济增长</b><span>的发展机会</span></span></div>
+      <div class="ch"><span class="no">05</span><span class="t"><b>如何打造可持续</b><span>的经济个体</span></span></div>
+    </div>
+    <p class="note">个人经济：能力、品牌与客户关系，构成一个可以独立运转的小型商业体。</p>
+  </section>
+
+  <!-- ════ 02 章节过渡 我经济 ════ -->
+  <section class="slide s-divider">
+    <span class="wm wm1" style="color:rgba(255,63,164,.05);">ME ECONOMY</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="block">
+      <div class="kicker"><span class="bar"></span><span>CHAPTER 01</span></div>
+      <h1 class="grad">我经济</h1>
+      <p class="sub">从个人就业时代，迈向个人商业时代</p>
+    </div>
+  </section>
+
+  <!-- ════ 03 公司越来越小 ════ -->
+  <section class="slide s-smaller">
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <h1 class="grad">公司越来越小，<br/>个人能力越来越强。</h1>
+    <div class="quote">
+      <svg><use href="#i-quote"/></svg>
+      <p>SMALLER COMPANIES,<br/>STRONGER INDIVIDUALS.</p>
+    </div>
+    <div class="comps">
+      <div class="comp past">
+        <div class="lbl"><b>过去创业</b><small>STARTUP</small></div>
+        <div class="chips">
+          <span class="chip">办公场地</span><span class="chip">员工团队</span>
+          <span class="chip">大量资金</span><span class="chip">管理体系</span>
+        </div>
+      </div>
+      <div class="comp now">
+        <div class="lbl"><b>个人经济</b><small>PERSONAL ECONOMY</small></div>
+        <div class="chips">
+          <span class="chip hot">AI 助手</span><span class="chip hot">内容渠道</span>
+          <span class="chip hot">电商平台</span>
+          <span class="chip hot">客户系统</span><span class="chip hot">自动化工具</span><span class="chip hot">全球市场入口</span>
+        </div>
+      </div>
+    </div>
+    <img class="photo" src="assets/office.jpg" alt="" />
+  </section>
+
+  <!-- ════ 04 不是没有公司 ════ -->
+  <section class="slide s-structure">
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <img class="photo" src="assets/sprout.jpg" alt="" />
+    <p class="ph-cap">NOT A COMPANY<br/>BUT A NEW STRUCTURE</p>
+    <div class="side">
+      <h1 class="grad">不是没有公司<br/>而是一种新的组织</h1>
+      <div class="bar">个人能力 ＋ 个人品牌 ＋ 客户关系</div>
+    </div>
+  </section>
+
+  <!-- ════ 05 过去开店 vs 现在建系统 ════ -->
+  <section class="slide s-store">
+    <span class="wm wm1">RECUR NEW</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="col l">
+      <div class="tag">PAST</div>
+      <h2>过去<br/>开一家店</h2>
+      <span class="en">OPEN A STORE</span>
+    </div>
+    <div class="col r">
+      <div class="tag">NOW</div>
+      <h2 class="grad">现在<br/>建立商业系统</h2>
+      <span class="en">BUILD A BUSINESS SYSTEM</span>
+    </div>
+    <div class="vs">VS</div>
+  </section>
+
+  <!-- ════ 06 数据 13000万 / 30000万 ════ -->
+  <section class="slide s-data">
+    <span class="wm wm1">POWER OF</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="nums">
+      <div>
+        <div class="metric"><span class="num grad">13,000</span><span class="unit">万</span></div>
+        <div class="label">经营主体</div>
+      </div>
+      <div>
+        <div class="metric"><span class="num grad">30,000</span><span class="unit">万</span></div>
+        <div class="label">灵活就业者</div>
+      </div>
+    </div>
+    <p class="tail">十万亿市场的深度洞察与行动方案</p>
+  </section>
+
+  <!-- ════ 07 成为自己的品牌 ════ -->
+  <section class="slide s-brand">
+    <span class="wm wm1" style="color:rgba(255,63,164,.05);">BRAND</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="block">
+      <h1 class="grad">成为自己的品牌</h1>
+      <span class="en">BECOME YOUR OWN BRAND</span>
+      <p class="crowd">创作者 · 教师 · 咨询师 · 行业专家 · 创业者</p>
+    </div>
+  </section>
+
+  <!-- ════ 08 超级个体 ════ -->
+  <section class="slide s-super">
+    <span class="wm wm1">NO.01</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <h1 class="grad">超级个体</h1>
+    <div class="en">VALUE CREATOR<small>价值创造者</small></div>
+    <p class="sub">个人经济，正在重新定义价值创造的方式</p>
+    <div class="struct">
+      <div class="s-box past">
+        <div class="cap">过去经济结构</div>
+        <div class="chain"><span class="node">企业</span><span class="arr">→</span><span class="node">个人</span><span class="arr">→</span><span class="node">消费者</span></div>
+      </div>
+      <div class="s-box now">
+        <div class="cap">未来经济结构</div>
+        <div class="chain"><span class="node">企业</span><span class="arr">↔</span><span class="node">个人</span><span class="arr">↔</span><span class="node">用户</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ 09 能力 Able ════ -->
+  <section class="slide s-ability">
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <svg class="curve" width="1920" height="500" viewBox="0 0 1920 500" fill="none">
+      <path d="M-40 420 C 420 200 900 120 1560 60" stroke="#00e5a8" stroke-opacity="0.35" stroke-width="5" />
+      <path d="M-40 460 C 460 260 940 180 1660 130" stroke="#ff3fa4" stroke-opacity="0.22" stroke-width="3" />
+    </svg>
+    <span class="script">Ability</span>
+    <h1 class="grad">能力</h1>
+    <div class="side">
+      <h2>MARKET</h2>
+      <p class="en">COMMERCIALIZATION OF<br/>PROFESSIONAL EXPERTISE</p>
+      <p class="en" style="margin-top:16px; color:var(--dim);">SIX ESSENTIAL COMPETENCY MODEL</p>
+    </div>
+  </section>
+
+  <!-- ════ 10 六大能力模型 ════ -->
+  <section class="slide s-wheel">
+    <span class="wm wm1">EXPERTISE</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <h2>我经济 · 六大能力模型</h2>
+    <p class="sub">一个人要独立运转，需要的六项底层能力</p>
+    <div class="wheel">
+      <svg class="arc" width="1500" height="800" viewBox="0 0 1500 800" fill="none">
+        <path d="M270 640 A 480 480 0 0 1 1230 640" stroke="rgba(255,255,255,.10)" stroke-width="2" />
+        <path d="M270 640 A 480 480 0 0 1 1230 640" stroke="rgba(255,63,164,.25)" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="750" y1="640" x2="270" y2="640" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+        <line x1="750" y1="640" x2="362" y2="358" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+        <line x1="750" y1="640" x2="602" y2="184" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+        <line x1="750" y1="640" x2="898" y2="184" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+        <line x1="750" y1="640" x2="1138" y2="358" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+        <line x1="750" y1="640" x2="1230" y2="640" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+      </svg>
+      <div class="hub"><svg width="70" height="70" viewBox="0 0 24 24"><use href="#i-bike"/></svg></div>
+      <div class="n" style="left:145px; top:634px;"><span class="p"></span><div class="cap">内容能力</div><p>让别人认识你</p></div>
+      <div class="n" style="left:237px; top:352px;"><span class="p"></span><div class="cap">获客能力</div><p>持续获得客户</p></div>
+      <div class="n" style="left:477px; top:178px;"><span class="p"></span><div class="cap">交付能力</div><p>稳定提供价值</p></div>
+      <div class="n" style="left:773px; top:178px;"><span class="p"></span><div class="cap">运营能力</div><p>管理收入和成本</p></div>
+      <div class="n" style="left:1013px; top:352px;"><span class="p"></span><div class="cap">资产能力</div><p>沉淀品牌和客户</p></div>
+      <div class="n" style="left:1105px; top:634px;"><span class="p"></span><div class="cap">产品能力</div><p>解决一个具体问题</p></div>
+    </div>
+  </section>
+
+  <!-- ════ 11 越专业越不被替代 ════ -->
+  <section class="slide s-prof">
+    <span class="wm wm1">BEING REPLACED</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="top">
+      <svg class="ico" width="64" height="64" viewBox="0 0 24 24"><use href="#i-bubble"/></svg>
+      <h1 class="grad">越专业，越不容易被价格替代。</h1>
+      <p class="lead">未来大量机会，来自"小而专业"的市场</p>
+    </div>
+    <div class="services">
+      <span class="chip hot">品牌设计</span><span class="chip hot">营销策划</span><span class="chip hot">财务咨询</span><span class="chip hot">AI 应用</span><span class="chip hot">数字化服务</span>
+    </div>
+    <div class="band">
+      <div class="l">THE BEST MARKET<br/>FOR YOURSELF</div>
+      <div class="cols">
+        <div class="c"><b>需求真实</b><span>客户确实有问题</span></div>
+        <div class="c"><b>付费明确</b><span>客户愿意为方案付费</span></div>
+        <div class="c"><b>复购可能</b><span>客户未来仍需要服务</span></div>
+      </div>
+      <div class="r">找到"最适合自己的市场。"</div>
+    </div>
+  </section>
+
+  <!-- ════ 12 越靠近生活 ════ -->
+  <section class="slide s-life">
+    <span class="wm wm1">LIFE STABILITY</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="top">
+      <svg class="ico" width="56" height="56" viewBox="0 0 24 24"><use href="#i-bubble"/></svg>
+      <h1 class="grad">越靠近生活，<br/>需求越稳定。</h1>
+    </div>
+    <div class="flow">
+      <span class="chip hot">内容获客</span><span class="arr">→</span>
+      <span class="chip">在线预约</span><span class="arr">→</span>
+      <span class="chip">标准服务</span><span class="arr">→</span>
+      <span class="chip">客户评价</span><span class="arr">→</span>
+      <span class="chip">会员复购</span>
+    </div>
+    <p class="note">互联网改变购物方式，AI 改变工作方式，但很多现实里的需求，依然无法被替代。</p>
+    <div class="pics">
+      <img src="assets/life-pet.jpg" alt="" />
+      <img src="assets/life-nail.jpg" alt="" />
+      <img src="assets/life-food.jpg" alt="" />
+      <img src="assets/life-cafe.jpg" alt="" />
+    </div>
+  </section>
+
+  <!-- ════ 13 小步验证持续迭代 ════ -->
+  <section class="slide s-iterate">
+    <span class="wm wm1">ITERATE</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <h1 class="grad">小步验证 · 持续迭代</h1>
+    <p class="lead">最大的风险，不是开始，而是一开始就投入太多。</p>
+    <div class="flow">
+      <span class="step">需求</span><span class="arr">→</span>
+      <span class="step">测试</span><span class="arr">→</span>
+      <span class="step">第一批客户</span><span class="arr">→</span>
+      <span class="step">验证产品</span><span class="arr">→</span>
+      <span class="step">形成收入</span><span class="arr">→</span>
+      <span class="step">优化模式</span><span class="arr">→</span>
+      <span class="step" style="background:rgba(255,63,164,.16);border:1px solid rgba(255,63,164,.5);color:#fff;">扩大投入</span>
+    </div>
+    <div class="pics">
+      <img src="assets/life-cafe.jpg" alt="" />
+      <img src="assets/life-food.jpg" alt="" />
+    </div>
+  </section>
+
+  <!-- ════ 14 五步进阶法 ════ -->
+  <section class="slide s-five">
+    <span class="wm wm1">DESIGN METHOD</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <h1 class="grad">五步进阶法</h1>
+    <span class="en">FIVE STEPS</span>
+    <div class="steps">
+      <div class="card"><div class="n">1</div><h3>找需求</h3><p>不问想做什么，先问：别人需要什么。</p></div>
+      <div class="card"><div class="n">2</div><h3>做验证</h3><p>用最低成本，拿到第一批真实客户。</p></div>
+      <div class="card"><div class="n">3</div><h3>做产品</h3><p>把个人能力，变成清晰的服务或产品。</p></div>
+      <div class="card"><div class="n">4</div><h3>做复购</h3><p>让一次购买，变成长久的关系。</p></div>
+      <div class="card"><div class="n">5</div><h3>做品牌</h3><p>把客户认可，沉淀为长期资产。</p></div>
+    </div>
+    <div class="formula">
+      <span>产品</span><i>×</i><span>流量</span><i>×</i><span>客户</span><i>×</i><span>效率</span><i>×</i><span>现金流</span>
+    </div>
+  </section>
+
+  <!-- ════ 15 新时代个人价值 ════ -->
+  <section class="slide s-final">
+    <span class="wm wm1" style="color:rgba(0,229,168,.06);">ME ECONOMY</span>
+    <header class="g-head">
+      <div class="g-logo"><b>GNYS</b><small>Domestic Transformation Industry</small></div>
+      <nav class="g-nav">
+        <span>时代变革·个人崛起</span><span>经济转型·模式重构</span><span>一人公司·重新定义</span><span>趋势洞察·寻找机会</span><span>能力升级·长期经营</span>
+      </nav>
+      <div class="g-badge">DOUGE.01</div>
+    </header>
+    <div class="block">
+      <h1 class="grad">新时代个人价值<br/>释放新方式</h1>
+      <span class="en">BECOME YOUR OWN BRAND</span>
+      <div class="tags">
+        <span class="chip">去组织化</span><span class="chip">专业化</span><span class="chip">数字化</span><span class="chip">品牌化</span><span class="chip hot">AI 化</span>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

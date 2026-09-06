@@ -17,6 +17,7 @@ import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from "node
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -60,18 +61,18 @@ slides = [...new Set(slides)].filter(n => n <= count);
 
 mkdirSync(outDir, { recursive: true });
 
-const tmpDir = join(ROOT, ".shot-tmp");
+const tmpDir = join(tmpdir(), `shot-${slug}-${process.pid}`);
 mkdirSync(tmpDir, { recursive: true });
 
 function wrapperFor(n) {
-  const rel = join("..", "templates", slug, "template.html");
+  const src = "file://" + tplHtml;
   return `<!doctype html>
 <html><head><meta charset="utf-8"><style>
   html,body{margin:0;padding:0;width:1920px;height:1080px;overflow:hidden}
   iframe{width:1920px;height:1080px;border:0;display:block}
 </style></head>
 <body>
-<iframe id="f" src="${rel}"></iframe>
+<iframe id="f" src="${src}"></iframe>
 <script>
   const N = ${n};
   const f = document.getElementById('f');
@@ -92,16 +93,21 @@ for (const n of slides) {
   const out = join(outDir, `${slug}-${n}.png`);
   const r = spawnSync(CHROME, [
     "--headless=new",
+    "--no-sandbox",
     "--disable-gpu",
     "--allow-file-access-from-files",
+    "--user-data-dir=" + join(tmpDir, "profile"),
+    "--no-first-run",
+    "--disable-crash-reporter",
+    "--disable-breakpad",
     "--hide-scrollbars",
     "--force-device-scale-factor=1",
     "--window-size=1920,1080",
     "--virtual-time-budget=5000",
     `--screenshot=${out}`,
     "file://" + wrapper
-  ], { stdio: "ignore" });
-  if (r.status !== 0 || !existsSync(out)) {
+  ], { stdio: "ignore", timeout: 20000 });
+  if (!existsSync(out)) {
     console.error(`第 ${n} 页截图失败`);
     failed++;
   } else {
